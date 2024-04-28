@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -7,10 +8,12 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const DestinationCard = ({ item }) => {
+  const navigation = useNavigation();
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate('Destination', { item })}
       style={{ width: wp(44), height: wp(65) }}
       className="relative mb-5 flex justify-end space-y-2 p-4 py-6">
       <Image
