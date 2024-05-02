@@ -6,25 +6,17 @@ import {
 } from 'react-native-responsive-screen';
 
 import { CategoriesData } from '~/constants';
-import { theme } from '~/theme';
+
 const Categories = () => {
   return (
-    <View className="space-y-5">
-      <View className="mx-5 flex-row items-center justify-between">
-        <Text style={{ fontSize: wp(4) }} className="font-medium text-neutral-700">
-          Categories
-        </Text>
-        <TouchableOpacity>
-          <Text style={{ fontSize: wp(4), color: theme.text }}>See all</Text>
-        </TouchableOpacity>
-      </View>
+    <View className="gap-y-5">
       <ScrollView
         horizontal
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        className="space-x-5">
+        className="gap-x-5">
         {CategoriesData.map((category, index) => (
-          <TouchableOpacity key={index} className="flex items-center space-y-2 p-4">
+          <TouchableOpacity key={index} className="flex items-center gap-y-2 p-4">
             <Image
               source={category.image}
               style={{ width: wp(20), height: wp(19) }}

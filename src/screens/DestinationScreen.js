@@ -16,16 +16,18 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import { theme } from '~/theme';
+import CustomPortableText from '~/components/CustomPortableText';
+import { urlFor } from '~/sanity';
 
 const DestinationScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [isFavorite, setIsFavorite] = useState(false);
+  console.log('item', item);
   return (
     <View className="flex-1 bg-white ">
       {/** Destination Image */}
       <Image
-        source={item.image}
+        source={{ uri: urlFor(item?.imageURL).url() }}
         style={{
           width: wp(100),
           height: hp(55),
@@ -49,57 +51,19 @@ const DestinationScreen = ({ route, navigation }) => {
       </SafeAreaView>
 
       {/** Destination Info */}
+
       <View
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
         className="-mt-14 flex flex-1 justify-between bg-white px-5 pt-8">
-        <ScrollView showsVerticalScrollIndicator={false} className="space-y-5">
-          <View className="flex-row items-start justify-between">
-            <Text style={{ fontSize: wp(7) }} className="flex-1 font-bold text-neutral-700">
-              {item.title}
-            </Text>
-            <Text style={{ fontSize: wp(7), color: theme.text }} className="font-semibold">
-              {item.price}
-            </Text>
-          </View>
-          <Text style={{ fontSize: wp(4) }} className="mb-2 mt-3 tracking-wide text-neutral-700">
-            {item.longDescription}
-          </Text>
-          <View className="mx-2 flex-row justify-between pt-3">
-            <View className=" flex-row items-start">
-              <ClockIcon size={wp(7)} color="skyblue" />
-              <View className="flex pl-2">
-                <Text style={{ fontSize: wp(4.5) }} className="font-bold text-neutral-700">
-                  {item.duration}
-                </Text>
-                <Text style={{ fontSize: wp(3.7) }} className="tracking-wide text-neutral-600">
-                  Duration
-                </Text>
-              </View>
-            </View>
-            <View className="flex-row items-start space-x-2">
-              <MapPinIcon size={wp(7)} color="red" />
-              <View className="flex space-y-2  pl-2">
-                <Text style={{ fontSize: wp(4.5) }} className="font-bold text-neutral-700">
-                  {item.distance}
-                </Text>
-                <Text style={{ fontSize: wp(3.7) }} className="tracking-wide text-neutral-600">
-                  Distance
-                </Text>
-              </View>
-            </View>
-            <View className="flex-row items-start space-x-2">
-              <SunIcon size={wp(7)} color="orange" />
-              <View className="flex space-y-2  pl-2">
-                <Text style={{ fontSize: wp(4.5) }} className="font-bold text-neutral-700">
-                  {item.weather}
-                </Text>
-                <Text style={{ fontSize: wp(3.7) }} className="tracking-wide text-neutral-600">
-                  Sunny
-                </Text>
-              </View>
-            </View>
-          </View>
-        </ScrollView>
+        {/**  Title */}
+        <Text style={{ fontSize: wp(7) }} className="font-bold text-neutral-700">
+          {item.title}
+        </Text>
+
+        {/**  Content */}
+        <View>
+          <CustomPortableText blocks={item.body} />
+        </View>
         {/**  Button */}
         <TouchableOpacity
           className="mx-auto mb-6 flex items-center justify-center rounded-full bg-orange-500 "

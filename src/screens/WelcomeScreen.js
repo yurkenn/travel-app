@@ -13,7 +13,7 @@ const WelcomeScreen = ({ navigation }) => {
       <Image source={require('../../assets/welcome.jpg')} className="absolute h-full w-full" />
 
       {/* content & gradient */}
-      <View className="space-y-8 p-5 pb-10">
+      <View className="gap-y-8 p-5 pb-10">
         <LinearGradient
           // Background Linear Gradient
           colors={['transparent', 'rgba(79, 53, 19, 0.5)']}
@@ -22,7 +22,7 @@ const WelcomeScreen = ({ navigation }) => {
           end={{ x: 0.5, y: 1 }}
           style={{ width: wp(100), height: hp(50) }}
         />
-        <View className="space-y-3">
+        <View className="gap-y-3">
           <Text className="text-5xl font-bold text-white" style={{ fontSize: wp(10) }}>
             Traveling made easy!
           </Text>

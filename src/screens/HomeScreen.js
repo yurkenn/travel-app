@@ -22,7 +22,7 @@ import SortCategories from '~/components/SortCategories';
 const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white pt-10">
-      <ScrollView showsVerticalScrollIndicator={false} className="mt-3 space-y-6">
+      <ScrollView showsVerticalScrollIndicator={false} className="mt-3 gap-y-6">
         {/* header */}
         <View className="mx-5 mb-10 flex-row items-center justify-between">
           <Text style={{ fontSize: wp(7) }} className="font-bold text-neutral-700">
@@ -38,7 +38,7 @@ const HomeScreen = () => {
 
         {/* search bar */}
         <View className="mx-5 mb-4">
-          <View className="flex-row items-center space-x-2 rounded-full bg-neutral-100 p-4 pl-6">
+          <View className="flex-row items-center gap-x-2 rounded-full bg-neutral-100 p-4 pl-6">
             <MagnifyingGlassIcon size={20} strokeWidth={3} color="gray" />
             <TextInput
               placeholder="Search for places"

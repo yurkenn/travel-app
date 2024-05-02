@@ -11,7 +11,7 @@ import { theme } from '~/theme';
 const SortCategories = () => {
   const [activeSort, setActiveSort] = useState('Popular');
   return (
-    <View className="mx-4 flex-row items-center justify-around  space-x-2 rounded-full bg-neutral-100 p-2 px-4">
+    <View className="mx-4 flex-row items-center justify-around  gap-x-2 rounded-full bg-neutral-100 p-2 px-4">
       {sortCategories.map((sort, index) => {
         const isActive = sort === activeSort;
         const activeButtonClass = isActive ? 'bg-white shadow' : '';

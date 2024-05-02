@@ -7,17 +7,20 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import { urlFor } from '~/sanity';
 const DestinationCard = ({ item }) => {
   const navigation = useNavigation();
   const [isFavorite, setIsFavorite] = useState(false);
+  console.log('item', item);
 
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Destination', { item })}
       style={{ width: wp(44), height: wp(65) }}
-      className="relative mb-5 flex justify-end space-y-2 p-4 py-6">
+      className="relative mb-5 flex justify-end gap-y-2 p-4 py-6">
       <Image
-        source={item.image}
+        source={{ uri: urlFor(item?.imageURL).url() }}
         style={{
           width: wp(44),
           height: wp(65),
