@@ -14,7 +14,7 @@ const SortCategories = () => {
     <View className="mx-4 flex-row items-center justify-around  gap-x-2 rounded-full bg-neutral-100 p-2 px-4">
       {sortCategories.map((sort, index) => {
         const isActive = sort === activeSort;
-        const activeButtonClass = isActive ? 'bg-white shadow' : '';
+        const activeButtonClass = isActive ? 'bg-white ' : '';
 
         return (
           <TouchableOpacity

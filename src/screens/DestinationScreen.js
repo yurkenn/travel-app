@@ -24,7 +24,7 @@ const DestinationScreen = ({ route, navigation }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   console.log('item', item);
   return (
-    <View className="flex-1 bg-white ">
+    <ScrollView className="flex-1 bg-white ">
       {/** Destination Image */}
       <Image
         source={{ uri: urlFor(item?.imageURL).url() }}
@@ -73,7 +73,7 @@ const DestinationScreen = ({ route, navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
