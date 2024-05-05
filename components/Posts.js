@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import { wp } from 'helpers/common';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { getPostsByOption } from 'services/api';
+
+import PostCard from './PostCard';
 
 const Posts = ({ activeOption }) => {
   const { data, isLoading, error } = useQuery({
@@ -9,16 +12,15 @@ const Posts = ({ activeOption }) => {
     queryFn: () => getPostsByOption(activeOption),
   });
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading)
+    return <ActivityIndicator size="large" color="black" style={{ marginTop: wp(10) }} />;
   if (error) return <Text>Error: {error.message}</Text>;
-  console.log(data);
+
   return (
-    <View>
+    <View style={styles.container}>
       {data.map((post) => (
         <View key={post._id}>
-          <Text>{post.title}</Text>
-          <Text>{post.description}</Text>
-          {/* Render other post properties here */}
+          <PostCard item={post} />
         </View>
       ))}
     </View>
@@ -27,4 +29,11 @@ const Posts = ({ activeOption }) => {
 
 export default Posts;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: wp(3),
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+});
