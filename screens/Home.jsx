@@ -1,5 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
+import Category from 'components/Category';
+import Options from 'components/Options';
+import Posts from 'components/Posts';
 import { wp } from 'helpers/common';
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -10,12 +14,9 @@ import {
   View,
 } from 'react-native';
 import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
-import { getAllPosts } from 'services/api';
 
 const Home = () => {
-  useEffect(() => {
-    getAllPosts();
-  }, []);
+  const [activeOption, setActiveOption] = useState('All');
 
   return (
     <View style={styles.container}>
@@ -37,19 +38,19 @@ const Home = () => {
         </View>
 
         {/* Categories */}
-        {/* <View style={styles.sectionContainer}>
-          <Categories />
-        </View> */}
+        <View style={styles.sectionContainer}>
+          <Category />
+        </View>
 
         {/* Sort Categories */}
-        {/* <View style={styles.sectionContainer}>
-          <SortCategories />
-        </View> */}
+        <View style={styles.sectionContainer}>
+          <Options activeOption={activeOption} setActiveOption={setActiveOption} />
+        </View>
 
-        {/* Destinations */}
-        {/* <View style={styles.sectionContainer}>
-          <Destinations />
-        </View> */}
+        {/* Posts */}
+        <View style={styles.sectionContainer}>
+          <Posts activeOption={activeOption} />
+        </View>
       </ScrollView>
     </View>
   );
@@ -62,49 +63,48 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingTop: wp(10),
-    padding: wp(5),
   },
   scrollView: {
-    marginTop: 3,
-    marginBottom: 10,
+    marginTop: 12,
+    marginVertical: 24,
   },
   headerContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: 5,
-    marginBottom: 10,
+    marginHorizontal: 20,
+    marginBottom: 40,
   },
   headerText: {
     fontSize: wp(7),
     fontWeight: 'bold',
-    color: '#333', // Adjust color as needed
+    color: '#4d4d4d', // Adjust color as needed
   },
   headerImage: {
     height: wp(12),
     width: wp(12),
   },
   searchBarContainer: {
-    marginHorizontal: 5,
-    marginBottom: 4,
+    marginHorizontal: 20,
+    marginBottom: 16,
   },
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    textAlign: 'center',
-    borderRadius: 25,
-    backgroundColor: '#F0F0F0', // Adjust background color as needed
-    padding: 10,
-    paddingLeft: 20,
-    marginVertical: 20,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+    borderRadius: 9999,
+    backgroundColor: '#f7f5f5',
   },
   searchInput: {
     flex: 1,
-    marginLeft: 10,
-    fontSize: wp(3.5),
-    paddingLeft: 5,
-    marginBottom: 5,
+    marginLeft: 8,
+    fontSize: wp(3.6),
+    paddingLeft: 4,
+    marginBottom: 4,
+    letterSpacing: 1,
   },
   sectionContainer: {
-    marginBottom: 4,
+    marginBottom: 10,
   },
 });
