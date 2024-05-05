@@ -12,7 +12,7 @@ const PostCard = ({ item }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('Detail', { item })}>
+      onPress={() => navigation.navigate('PostDetail', { post: item })}>
       <Image source={{ uri: urlFor(item?.mainImage).url() }} style={styles.image} />
       <LinearGradient
         // Background Linear Gradient
