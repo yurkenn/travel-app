@@ -1,9 +1,6 @@
+import { wp } from 'helpers/common';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { StyleSheet, Text, View } from 'react-native';
 import PortableText from 'react-portable-text';
 const CustomPortableText = ({ blocks }) => {
   console.log('blocks', blocks);
@@ -32,4 +29,22 @@ const CustomPortableText = ({ blocks }) => {
 
 export default CustomPortableText;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  h1: {
+    fontSize: wp(6),
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  li: {
+    fontSize: wp(4),
+    color: 'black',
+  },
+  p: {
+    fontSize: wp(4),
+    color: 'black',
+  },
+  normal: {
+    fontSize: wp(4),
+    color: 'black',
+  },
+});

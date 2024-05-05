@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "travel-app",
-    "slug": "travel-app",
+    "name": "init",
+    "slug": "init",
     "version": "1.0.0",
 
     "web": {
