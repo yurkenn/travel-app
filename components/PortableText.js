@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PortableText from 'react-portable-text';
 const CustomPortableText = ({ blocks }) => {
-  console.log('blocks', blocks);
   return (
     <View>
       <PortableText
