@@ -1,8 +1,30 @@
 import client from './sanity';
 
-export const getAllPosts = async () => {
-  const query = '*[_type == "post"] | order(publishedAt desc)';
+// getOptions
+export const getOptions = async () => {
+  const query = '*[_type == "option"]';
+  const options = await client.fetch(query);
+  return options;
+};
+
+// getPostsByOption
+export const getPostsByOption = async (option) => {
+  let query;
+
+  if (option === 'All') {
+    query = '*[_type == "post"]';
+  } else {
+    query = `*[_type == "post" && "${option}" in options]`;
+  }
+
   const posts = await client.fetch(query);
   console.log(posts);
   return posts;
+};
+
+// getAllCategories
+export const getAllCategories = async () => {
+  const query = '*[_type == "category"]';
+  const categories = await client.fetch(query);
+  return categories;
 };
