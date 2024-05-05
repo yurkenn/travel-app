@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   categoryImage: {
     width: wp(20),
     height: wp(20),
-    borderRadius: wp(5),
   },
   categoryTitle: {
     marginTop: 5,
