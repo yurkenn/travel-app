@@ -1,9 +1,9 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hp, wp } from 'helpers/common';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { HeartIcon } from 'react-native-heroicons/solid';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { urlFor } from 'services/sanity';
 
 const PostCard = ({ item }) => {
@@ -22,7 +22,7 @@ const PostCard = ({ item }) => {
         style={styles.gradient}
       />
       <TouchableOpacity onPress={() => setIsFavorite(!isFavorite)} style={styles.favorite}>
-        <HeartIcon size={wp(5)} color={isFavorite ? 'red' : 'white'} />
+        <Ionicons name="heart-outline" size={wp(5)} color={isFavorite ? 'red' : 'white'} />
       </TouchableOpacity>
 
       <Text style={styles.title}>{item.title}</Text>
