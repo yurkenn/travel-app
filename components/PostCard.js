@@ -14,20 +14,24 @@ const PostCard = ({ item }) => {
   const [favorites, setFavorites] = useMMKVObject('favorites');
 
   const toggleFavorite = () => {
-    const current = favorites || [];
-    if (!isFavorite) {
-      setFavorites([...current, item]);
-      setFavorites(true);
+    if (isFavorite) {
+      setFavorites((prev) => {
+        const newFavorites = { ...prev };
+        delete newFavorites[item._id];
+        return newFavorites;
+      });
     } else {
-      setFavorites(current.filter((i) => i._id !== item._id));
-      setIsFavorite(false);
+      setFavorites((prev) => {
+        return { ...prev, [item._id]: item };
+      });
     }
+    setIsFavorite(!isFavorite);
   };
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('PostDetail', { post: item })}>
+      onPress={() => navigation.navigate('PostDetail', { post: item, isFavorite })}>
       <Animated.Image
         source={{ uri: urlFor(item?.mainImage).url() }}
         style={styles.image}
@@ -40,7 +44,7 @@ const PostCard = ({ item }) => {
         end={{ x: 0.5, y: 1 }}
         style={styles.gradient}
       />
-      <TouchableOpacity onPress={() => setIsFavorite(!isFavorite)} style={styles.favorite}>
+      <TouchableOpacity onPress={toggleFavorite} style={styles.favorite}>
         <Ionicons
           name={isFavorite ? 'heart' : 'heart-outline'}
           size={wp(5)}

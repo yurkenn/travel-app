@@ -15,7 +15,7 @@ const { width } = Dimensions.get('window');
 const IMG_HEIGHT = hp(50);
 
 const PostDetail = ({ route, navigation }) => {
-  const { post } = route.params;
+  const { post, isFavorite } = route.params;
   const scrollRef = useAnimatedRef();
   const scrollOffset = useScrollViewOffset(scrollRef);
 
@@ -54,7 +54,11 @@ const PostDetail = ({ route, navigation }) => {
             <Ionicons name="share-outline" size={22} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.roundButton}>
-            <Ionicons name="heart-outline" size={22} color="black" />
+            <Ionicons
+              name={isFavorite ? 'heart' : 'heart-outline'}
+              size={wp(5)}
+              color={isFavorite ? 'red' : 'black'}
+            />
           </TouchableOpacity>
         </View>
       ),
