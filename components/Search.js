@@ -1,13 +1,13 @@
+import { Ionicons } from '@expo/vector-icons';
 import { wp } from 'helpers/common';
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { MagnifyingGlassIcon } from 'react-native-heroicons/solid';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 const Search = () => {
   return (
     <View style={styles.searchBarContainer}>
       <View style={styles.searchInputContainer}>
-        <MagnifyingGlassIcon size={20} strokeWidth={3} color="gray" />
+        <Ionicons name="search-outline" size={20} strokeWidth={3} color="gray" />
         <TextInput placeholder="Search for places" style={styles.searchInput} />
       </View>
     </View>
