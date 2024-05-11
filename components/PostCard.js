@@ -22,7 +22,11 @@ const PostCard = ({ item }) => {
         style={styles.gradient}
       />
       <TouchableOpacity onPress={() => setIsFavorite(!isFavorite)} style={styles.favorite}>
-        <Ionicons name="heart-outline" size={wp(5)} color={isFavorite ? 'red' : 'white'} />
+        <Ionicons
+          name={isFavorite ? 'heart' : 'heart-outline'}
+          size={wp(5)}
+          color={isFavorite ? 'red' : 'white'}
+        />
       </TouchableOpacity>
 
       <Text style={styles.title}>{item.title}</Text>
