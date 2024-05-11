@@ -1,17 +1,14 @@
 {
   "expo": {
-    "name": "init",
-    "slug": "init",
+    "name": "Ancient Cities of Turkey",
+    "slug": "ancient-cities-of-turkey",
     "version": "1.0.0",
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,14 +17,24 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yurken.travelapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.yurken.travelapp",
+      "versionCode": 2
+    },
+    "extra": {
+      "eas": {
+        "projectId": "108d54bc-1b8c-427f-b076-263fc2ddae01"
       }
     }
   }
