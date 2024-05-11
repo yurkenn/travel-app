@@ -2,18 +2,37 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hp, wp } from 'helpers/common';
-import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useMMKVBoolean, useMMKVObject } from 'react-native-mmkv';
+import Animated from 'react-native-reanimated';
 import { urlFor } from 'services/sanity';
 
 const PostCard = ({ item }) => {
   const navigation = useNavigation();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useMMKVBoolean(`favorite-${item._id}`);
+  const [favorites, setFavorites] = useMMKVObject('favorites');
+
+  const toggleFavorite = () => {
+    const current = favorites || [];
+    if (!isFavorite) {
+      setFavorites([...current, item]);
+      setFavorites(true);
+    } else {
+      setFavorites(current.filter((i) => i._id !== item._id));
+      setIsFavorite(false);
+    }
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.navigate('PostDetail', { post: item })}>
-      <Image source={{ uri: urlFor(item?.mainImage).url() }} style={styles.image} />
+      <Animated.Image
+        source={{ uri: urlFor(item?.mainImage).url() }}
+        style={styles.image}
+        sharedTransitionTag={item._id}
+      />
       <LinearGradient
         // Background Linear Gradient
         colors={['transparent', 'rgba(0, 0, 0, 0.8)']}

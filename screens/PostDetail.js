@@ -73,6 +73,7 @@ const PostDetail = ({ route, navigation }) => {
     <View style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.Image
+          sharedTransitionTag={post._id}
           source={{ uri: urlFor(post?.mainImage).url() }}
           style={[styles.image, imageAnimatedStyle]}
         />

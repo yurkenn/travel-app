@@ -2,7 +2,7 @@ import { createClient } from '@sanity/client';
 import ImageUrlBuilder from '@sanity/image-url';
 
 const client = createClient({
-  projectId: '3vasfitl',
+  projectId: process.env.EXPO_PUBLIC_SANITY_PROJECT_ID,
   dataset: 'production',
   apiVersion: '2024-05-02', // use a UTC date string
   useCdn: true, // Use the cached version (optional)
