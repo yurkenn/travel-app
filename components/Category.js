@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: wp(3),
     fontWeight: 'medium',
-    color: '#4d4d4d', // Adjust as per your design
+    color: '#4d4d4d',
   },
 });
 
