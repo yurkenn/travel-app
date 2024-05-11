@@ -6,16 +6,12 @@ import Welcome from 'screens/Welcome';
 
 const Stack = createStackNavigator();
 
-export default function RootStack() {
+export default function RootStack({ navigation }) {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Welcome"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Home" component={Home} />
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Stack.Screen name="PostDetail" component={PostDetail} />
       </Stack.Navigator>
     </NavigationContainer>
