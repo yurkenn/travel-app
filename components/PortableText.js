@@ -2,7 +2,7 @@ import { wp } from 'helpers/common';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PortableText from 'react-portable-text';
-const CustomPortableText = ({ blocks }) => {
+const CustomPortableText = ({ blocks = [] }) => {
   return (
     <View>
       <PortableText
