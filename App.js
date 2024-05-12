@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 
 import RootStack from './navigation';
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <StatusBar />
       <RootStack />
     </QueryClientProvider>
   );
