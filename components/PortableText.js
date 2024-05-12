@@ -1,10 +1,8 @@
 import { wp } from 'helpers/common';
 import React from 'react';
-import { StyleSheet, Text, View, LogBox } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import PortableText from 'react-portable-text';
-LogBox.ignoreLogs([
-  'Warning: SanityBlockContent: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.',
-]);
+
 const CustomPortableText = ({ blocks = [] }) => {
   return (
     <View>

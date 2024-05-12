@@ -1,5 +1,4 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBar } from 'expo-status-bar';
 import { hp, wp } from 'helpers/common';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
