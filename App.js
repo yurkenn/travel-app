@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -21,8 +22,10 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar />
-      <RootStack />
+      <BottomSheetModalProvider>
+        <StatusBar />
+        <RootStack />
+      </BottomSheetModalProvider>
     </QueryClientProvider>
   );
 }
