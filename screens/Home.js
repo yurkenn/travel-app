@@ -5,39 +5,46 @@ import Posts from 'components/Posts';
 import Search from 'components/Search';
 import { wp } from 'helpers/common';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 
 const Home = () => {
   const [activeOption, setActiveOption] = useState('All');
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+      <Animated.ScrollView
+        entering={FadeIn.duration(1000)}
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollView}>
         {/* Header */}
-        <View style={styles.sectionContainer}>
+        <Animated.View entering={FadeInDown.delay(200).springify()} style={styles.sectionContainer}>
           <Header />
-        </View>
+        </Animated.View>
 
         {/* Search Bar */}
-        <View style={styles.sectionContainer}>
+        <Animated.View entering={FadeInDown.delay(400).springify()} style={styles.sectionContainer}>
           <Search />
-        </View>
+        </Animated.View>
 
         {/* Categories */}
-        <View style={styles.sectionContainer}>
+        <Animated.View entering={FadeInDown.delay(600).springify()} style={styles.sectionContainer}>
           <Category />
-        </View>
+        </Animated.View>
 
         {/* Sort Categories */}
-        <View style={styles.sectionContainer}>
+        <Animated.View entering={FadeInDown.delay(800).springify()} style={styles.sectionContainer}>
           <Options activeOption={activeOption} setActiveOption={setActiveOption} />
-        </View>
+        </Animated.View>
 
         {/* Posts */}
-        <View style={styles.sectionContainer}>
+        <Animated.View
+          entering={FadeInDown.delay(1000).springify()}
+          style={styles.sectionContainer}>
           <Posts activeOption={activeOption} />
-        </View>
-      </ScrollView>
+        </Animated.View>
+      </Animated.ScrollView>
     </View>
   );
 };

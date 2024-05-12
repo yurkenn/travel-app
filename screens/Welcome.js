@@ -1,14 +1,14 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { hp, wp } from 'helpers/common';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 const Welcome = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require('../assets/welcome.jpg')} />
 
       {/* content */}
-      <View style={styles.contentContainer}>
+      <Animated.View entering={FadeIn.duration(600)} style={styles.contentContainer}>
         <LinearGradient
           // Background Linear Gradient
           colors={['transparent', 'rgba(79, 53, 19, 0.5)']}
@@ -17,15 +17,19 @@ const Welcome = ({ navigation }) => {
           style={styles.gradient}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.text1}>Traveling made easy!</Text>
-          <Text style={styles.text2}>
+          <Animated.Text entering={FadeInDown.delay(400).springify()} style={styles.text1}>
+            Traveling made easy!
+          </Animated.Text>
+          <Animated.Text entering={FadeInDown.delay(500).springify()} style={styles.text2}>
             Experience the world's best adventure around the world with us
-          </Text>
+          </Animated.Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.buttonText}>Let's go!</Text>
-        </TouchableOpacity>
-      </View>
+        <Animated.View entering={FadeInDown.delay(600).springify()}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.buttonText}>Let's go!</Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </Animated.View>
     </View>
   );
 };

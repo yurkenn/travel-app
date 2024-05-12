@@ -1,5 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import CustomPortableText from 'components/PortableText';
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 import { hp, wp } from 'helpers/common';
 import { useLayoutEffect } from 'react';
 import { StyleSheet, View, Dimensions, Platform, TouchableOpacity } from 'react-native';
@@ -18,6 +20,19 @@ const PostDetail = ({ route, navigation }) => {
   const { post, isFavorite } = route.params;
   const scrollRef = useAnimatedRef();
   const scrollOffset = useScrollViewOffset(scrollRef);
+
+  const fileName = post.mainImage.asset._ref.split('-')[1];
+  const imageUrl = urlFor(post.mainImage).url();
+  const filePath = `${FileSystem.cacheDirectory}${fileName}`;
+
+  const handleShareButton = async () => {
+    try {
+      await FileSystem.downloadAsync(imageUrl, filePath);
+      await Sharing.shareAsync(filePath);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -50,7 +65,7 @@ const PostDetail = ({ route, navigation }) => {
       headerBackImage: () => null,
       headerRight: () => (
         <View style={styles.bar}>
-          <TouchableOpacity style={styles.roundButton}>
+          <TouchableOpacity onPress={handleShareButton} style={styles.roundButton}>
             <Ionicons name="share-outline" size={22} color="black" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.roundButton}>
@@ -74,7 +89,7 @@ const PostDetail = ({ route, navigation }) => {
   }, [headerAnimatedStyle, navigation]);
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.Image
           sharedTransitionTag={post._id}
@@ -85,7 +100,7 @@ const PostDetail = ({ route, navigation }) => {
           <CustomPortableText blocks={post.body} />
         </View>
       </Animated.ScrollView>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -103,7 +118,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#fff',
-    height: Platform.OS === 'ios' ? hp(13) : hp(11),
+    height: Platform.OS === 'ios' ? hp(13) : hp(7),
     borderBottomColor: 'gray',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
