@@ -5,46 +5,43 @@ import Posts from 'components/Posts';
 import Search from 'components/Search';
 import { wp } from 'helpers/common';
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 const Home = () => {
   const [activeOption, setActiveOption] = useState('All');
 
   return (
     <View style={styles.container}>
-      <Animated.ScrollView
-        entering={FadeIn.duration(1000)}
+      <ScrollView
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
         style={styles.scrollView}>
         {/* Header */}
-        <Animated.View entering={FadeInDown.delay(200).springify()} style={styles.sectionContainer}>
+        <Animated.View style={styles.sectionContainer}>
           <Header />
         </Animated.View>
 
         {/* Search Bar */}
-        <Animated.View entering={FadeInDown.delay(400).springify()} style={styles.sectionContainer}>
+        <Animated.View style={styles.sectionContainer}>
           <Search />
         </Animated.View>
 
         {/* Categories */}
-        <Animated.View entering={FadeInDown.delay(600).springify()} style={styles.sectionContainer}>
+        <Animated.View style={styles.sectionContainer}>
           <Category />
         </Animated.View>
 
         {/* Sort Categories */}
-        <Animated.View entering={FadeInDown.delay(800).springify()} style={styles.sectionContainer}>
+        <Animated.View style={styles.sectionContainer}>
           <Options activeOption={activeOption} setActiveOption={setActiveOption} />
         </Animated.View>
 
         {/* Posts */}
-        <Animated.View
-          entering={FadeInDown.delay(1000).springify()}
-          style={styles.sectionContainer}>
+        <Animated.View style={styles.sectionContainer}>
           <Posts activeOption={activeOption} />
         </Animated.View>
-      </Animated.ScrollView>
+      </ScrollView>
     </View>
   );
 };

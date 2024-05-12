@@ -104,6 +104,7 @@ const PostDetail = ({ route, navigation }) => {
   );
 };
 
+const deviceHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#fff',
-    height: Platform.OS === 'ios' ? hp(13) : hp(7),
+    height: Platform.OS === 'ios' ? deviceHeight / 8 : deviceHeight / 10,
     borderBottomColor: 'gray',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
