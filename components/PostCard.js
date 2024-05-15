@@ -32,11 +32,7 @@ const PostCard = ({ item }) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.navigate('PostDetail', { post: item, isFavorite })}>
-      <Animated.Image
-        source={{ uri: urlFor(item?.mainImage).url() }}
-        style={styles.image}
-        sharedTransitionTag={item._id}
-      />
+      <Animated.Image source={{ uri: urlFor(item?.mainImage).url() }} style={styles.image} />
       <LinearGradient
         // Background Linear Gradient
         colors={['transparent', 'rgba(0, 0, 0, 0.8)']}
