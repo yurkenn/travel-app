@@ -35,6 +35,14 @@ const Search = () => {
             value={search}
             onChangeText={(text) => setSearch(text)}
           />
+          {
+            // Show cancel button if search is not empty
+            search.length > 0 && (
+              <TouchableOpacity onPress={() => setSearch('')}>
+                <Ionicons name="close" size={20} color="gray" />
+              </TouchableOpacity>
+            )
+          }
         </View>
       </View>
       {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
