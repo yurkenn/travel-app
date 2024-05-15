@@ -28,3 +28,10 @@ export const getAllCategories = async () => {
   const categories = await client.fetch(query);
   return categories;
 };
+
+// searchPosts
+export const searchPosts = async (search) => {
+  const query = `*[_type == "post" && title match "${search}*"]`;
+  const posts = await client.fetch(query);
+  return posts;
+};
